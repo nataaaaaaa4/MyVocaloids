@@ -5,36 +5,237 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Favorite Vocaloid Songs</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
 body {
     margin: 0;
-    font-family: 'Quicksand', sans-serif;
-    background: linear-gradient(135deg, #40e0d0, #a0f0f0, #ffd6ec);
+    font-family: "Comic Sans MS", cursive;
+    background: url('https://ibb.co.com/nqN3KBY6') no-repeat center center/cover;
     overflow-x: hidden;
+    color: white;
 }
 
-/* SPARKLE */
+/* sparkle */
 .sparkle {
     position: fixed;
-    width: 5px;
-    height: 5px;
+    top: -10px;
+    width: 10px;
+    height: 10px;
     background: white;
     border-radius: 50%;
-    animation: sparkleMove linear infinite;
+    animation: fall linear infinite;
 }
 
-@keyframes sparkleMove {
-    from {transform: translateY(-10px);}
-    to {transform: translateY(100vh);}
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
 }
 
-/* HEADER */
-header {
+/* title */
+h1 {
     text-align: center;
-    padding: 40px;
+    font-size: 40px;
+    animation: float 3s ease-in-out infinite;
+    color: #b0c4ff;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0);}
+    50% { transform: translateY(-10px);}
+}
+
+/* container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* card */
+.card {
+    background: rgba(0,0,50,0.8);
+    border-radius: 20px;
+    padding: 15px;
+    margin: 15px;
+    width: 250px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 0 15px #6a7dff;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* button */
+button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #6a7dff;
     color: white;
+}
+
+.like {
+    background: pink;
+}
+
+/* heart rain */
+.heart {
+    position: fixed;
+    color: pink;
+    font-size: 20px;
+    animation: fallHeart 2s linear forwards;
+}
+
+@keyframes fallHeart {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* login */
+.login-box {
+    background: rgba(0,0,80,0.8);
+    padding: 15px;
+    border-radius: 15px;
+    margin: 20px;
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* comments */
+.comments {
+    background: rgba(0,0,80,0.7);
+    padding: 15px;
+    border-radius: 15px;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.comment {
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+/* fade in */
+.fade {
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>✨ My Favorite Vocaloid Songs ✨</h1>
+
+<p class="fade" style="text-align:center;">
+Honestly i just picked random songs, could be overrated. If you disagree sorry not sorry.
+</p>
+
+<div class="login-box">
+<h3>Login / Sign Up</h3>
+<input type="email" placeholder="Email">
+<input type="password" placeholder="Password">
+<button>Login</button>
+<button>Sign Up</button>
+</div>
+
+<div class="container">
+
+<!-- Song 1 -->
+<div class="card">
+<img src="https://ibb.co.com/fVJnNhds">
+<h3>Inochi Bakkari</h3>
+<button onclick="visit('https://youtu.be/YDnZFwlZa1g?si=91MkvOSuu8NveOXG')">Visit</button>
+<button class="like" onclick="likeEffect()">💖 Like</button>
+</div>
+
+<!-- Song 2 -->
+<div class="card">
+<img src="https://ibb.co.com/DsnrdkY">
+<h3>Rakuraku anrakushi</h3>
+<button onclick="visit('https://youtu.be/1gnISlt_mhU?si=lPlkqN1b4eHrA1DL')">Visit</button>
+<button class="like" onclick="likeEffect()">💖 Like</button>
+</div>
+
+<!-- Song 3 -->
+<div class="card">
+<img src="https://ibb.co.com/N254ZdGh">
+<h3>Netsu ijou</h3>
+<button onclick="visit('https://youtu.be/b2NTglk9tvI?si=t0oxyXMVaNpCtBF2')">Visit</button>
+<button class="like" onclick="likeEffect()">💖 Like</button>
+</div>
+
+</div>
+
+<!-- comments -->
+<div class="comments">
+<h3>💬 Comments</h3>
+<div class="comment">OMG this song hits different 💔</div>
+<div class="comment">Taste kamu bagus banget!</div>
+<div class="comment">Ini underrated parah 😭</div>
+</div>
+
+<script>
+// visit
+function visit(link) {
+    window.open(link, '_blank');
+}
+
+// heart rain
+function likeEffect() {
+    for(let i=0;i<20;i++){
+        let heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = "0px";
+        document.body.appendChild(heart);
+
+        setTimeout(()=> heart.remove(),2000);
+    }
+}
+
+// sparkle background
+function createSparkle() {
+    let sparkle = document.createElement("div");
+    sparkle.classList.add("sparkle");
+    sparkle.style.left = Math.random() * window.innerWidth + "px";
+    sparkle.style.animationDuration = (Math.random()*3+2)+"s";
+    document.body.appendChild(sparkle);
+
+    setTimeout(()=> sparkle.remove(),5000);
+}
+
+setInterval(createSparkle, 200);
+</script>
+
+</body>
+</html>    color: white;
 }
 
 .title {
