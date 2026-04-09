@@ -2,24 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Favorite Vocaloid Songs</title>
 
 <style>
 body {
     margin: 0;
     font-family: "Comic Sans MS", cursive;
-    background: url('https://ibb.co.com/nqN3KBY6') no-repeat center center/cover;
-    overflow-x: hidden;
+    background: #0b1a3a;
     color: white;
+    text-align: center;
+    overflow-x: hidden;
 }
 
-/* sparkle */
+/* Background */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.ibb.co.com/nqN3KBY6') no-repeat center/cover;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+/* Sparkle */
 .sparkle {
     position: fixed;
-    top: -10px;
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
     background: white;
     border-radius: 50%;
     animation: fall linear infinite;
@@ -28,13 +38,177 @@ body {
 @keyframes fall {
     to {
         transform: translateY(100vh);
+    }
+}
+
+/* Header */
+h1 {
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Card */
+.card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 15px;
+    margin: 20px;
+    display: inline-block;
+    width: 250px;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* Buttons */
+button {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    background: pink;
+    cursor: pointer;
+    font-family: "Comic Sans MS";
+    transition: 0.3s;
+}
+
+button:hover {
+    background: hotpink;
+    box-shadow: 0 0 10px pink;
+}
+
+/* Hearts */
+.heart {
+    position: fixed;
+    color: pink;
+    animation: heartFall 2s linear forwards;
+}
+
+@keyframes heartFall {
+    to {
+        transform: translateY(200px);
         opacity: 0;
     }
 }
 
-/* title */
-h1 {
-    text-align: center;
+/* Comments */
+.comments {
+    background: rgba(255,255,255,0.1);
+    margin: 30px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.comment {
+    background: rgba(255,255,255,0.2);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+/* Login */
+.login-box {
+    margin-top: 20px;
+}
+
+input {
+    margin: 5px;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>💙 My Favorite Vocaloid Songs 💙</h1>
+<p><i>"Honestly i just picked random songs, could be overrated. If you disagree sorry not sorry."</i></p>
+
+<!-- LOGIN -->
+<div class="login-box">
+    <h3>Login / Sign Up</h3>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <br>
+    <button>Login</button>
+    <button>Sign Up</button>
+</div>
+
+<!-- SONGS -->
+<div class="card">
+    <img src="https://i.ibb.co.com/fVJnNhds">
+    <h3>Inochi Bakkari</h3>
+    <button onclick="visit('https://youtu.be/YDnZFwlZa1g')">Visit</button>
+    <button onclick="likeEffect()">❤️ Like</button>
+</div>
+
+<div class="card">
+    <img src="https://i.ibb.co.com/DsnrdkY">
+    <h3>Rakuraku Anrakushi</h3>
+    <button onclick="visit('https://youtu.be/1gnISlt_mhU')">Visit</button>
+    <button onclick="likeEffect()">❤️ Like</button>
+</div>
+
+<div class="card">
+    <img src="https://i.ibb.co.com/N254ZdGh">
+    <h3>Netsu Ijou</h3>
+    <button onclick="visit('https://youtu.be/b2NTglk9tvI')">Visit</button>
+    <button onclick="likeEffect()">❤️ Like</button>
+</div>
+
+<!-- COMMENTS -->
+<div class="comments">
+    <h3>💬 Comments</h3>
+    <div class="comment">OMG THIS SONG IS SO GOOD 💕</div>
+    <div class="comment">Taste!!!</div>
+    <div class="comment">I love this vibe 😭✨</div>
+</div>
+
+<script>
+// Visit button
+function visit(link){
+    window.open(link, "_blank");
+}
+
+// Hearts animation
+function likeEffect(){
+    for(let i=0;i<10;i++){
+        let heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.className = "heart";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.top = "50%";
+        document.body.appendChild(heart);
+
+        setTimeout(()=> heart.remove(), 2000);
+    }
+}
+
+// Sparkle generator
+for(let i=0;i<30;i++){
+    let s = document.createElement("div");
+    s.className = "sparkle";
+    s.style.left = Math.random()*100 + "vw";
+    s.style.animationDuration = (2 + Math.random()*3) + "s";
+    document.body.appendChild(s);
+}
+</script>
+
+</body>
+</html>    text-align: center;
     font-size: 40px;
     animation: float 3s ease-in-out infinite;
     color: #b0c4ff;
